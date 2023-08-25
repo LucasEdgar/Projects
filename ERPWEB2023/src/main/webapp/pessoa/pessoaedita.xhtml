@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body"> 
+
+            <h1 align="center">Cadastro de Pessoas</h1>
+            <h:form style="text-align: -webkit-center">
+                <p:messages />
+                <p:growl showDetail="false"/>
+
+                <p:panelGrid columns="3">
+                    Nome:<p:inputText value="#{pessoaControle.pessoa.nome}" size="50"
+                                      required="true" requiredMessage="O Nome é Obrigatório!"
+                                      id="nome"/>
+                    <p:message for="nome"/>
+                    CPF/CNPJ:<p:inputText value="#{pessoaControle.pessoa.cpfCnpj}" size="50"
+                                    required="true" requiredMessage="Digite o Tipo de Pessoa!"
+                                    id="cpfCnpj"/>
+                    <p:message for="cpfCnpj"/>
+                    Endereço:<p:inputText value="#{pessoaControle.pessoa.endedreco}" size="50"
+                                      required="true" requiredMessage="O Endereço é Obrigatório!"
+                                      id="endereco"/>
+                    <p:message for="endereco"/>
+                    Número:<p:inputText value="#{pessoaControle.pessoa.numero}" size="50"
+                                      required="true" requiredMessage="O nome é obrigatório!"
+                                      id="numero"/>
+                    <p:message for="numero"/>
+                    
+                    <p:commandButton value="Salvar" action="pessoalista"
+                                     actionListener="#{pessoaControle.salvar()}"
+                                     ajax="false"/>
+                    <p:commandButton value="Voltar" action="pessoalista" 
+                                     ajax="false" immediate="true"/>
+                </p:panelGrid>            
+                
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+</html>

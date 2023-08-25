@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body"> 
+
+            <h1 align="center">Lista de Produtos</h1>
+            <h:form style="margin: 15px">           
+                <p:dataTable value="#{produtoControle.listaProdutos}" var="prod" style="text-align-last: center"
+                             emptyMessage="Nenhum Produto Cadastrado!"
+                             paginator="true" rows="5" 
+                             rowsPerPageTemplate="2,5,10,{ShowAll|'All'}">
+                    <p:column headerText="Nome"
+                              filterBy="#{prod.nome}" filterMatchMode="contains"
+                              sortBy="#{prod.nome}">
+                        <p:outputLabel value="#{prod.nome}"/>
+                    </p:column>
+                    <p:column headerText="Preço"
+                              filterBy="#{prod.preco}" filterMatchMode="contains"
+                              sortBy="#{prod.preco}">
+                        <p:outputLabel value="#{prod.preco}"/>
+                    </p:column>
+                    <p:column headerText="Estoque"
+                              filterBy="#{prod.estoque}" filterMatchMode="contains"
+                              sortBy="#{prod.estoque}">
+                        <p:outputLabel value="#{prod.estoque}"/>
+                    </p:column>
+                    <p:column headerText="Grupo do Produto"
+                              filterBy="#{prod.produtoGrupo.nome}" filterMatchMode="contains"
+                              sortBy="#{prod.produtoGrupo.nome}">
+                        <p:outputLabel value="#{prod.produtoGrupo.nome}"/>
+                    </p:column>
+
+                    <p:column headerText="OP" width="100">
+                        <p:commandButton ajax="false" 
+                                         action="#{produtoControle.remover(prod)}"
+                                         icon="ui-icon-trash"
+                                         immediate="true"/>
+                        <p:commandButton ajax="false" 
+                                         actionListener="#{produtoControle.editar(prod)}"
+                                         action="produtoedita"
+                                         icon="ui-icon-pencil"
+                                         immediate="true"/>
+                    </p:column>
+
+                </p:dataTable>
+                <br/>
+                <p:commandButton value="Novo Grupo de Produtos" action="produtogrupoedita"/>
+                <a/>
+                <p:commandButton value="Novo Produto" action="produtoedita"/>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

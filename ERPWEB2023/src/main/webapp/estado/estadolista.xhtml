@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body"> 
+
+            <h1 align="center">Lista de Estados</h1>
+            <h:form style="margin: 15px">           
+                <p:dataTable value="#{estadoControle.listaEstados}" var="est" style="text-align-last: center"
+                             emptyMessage="Nenhum Estado Cadastrado!"
+                             paginator="true" rows="5" 
+                             rowsPerPageTemplate="2,5,10,{ShowAll|'All'}">
+                    <p:column headerText="Nome"
+                              filterBy="#{est.nome}" filterMatchMode="contains"
+                              sortBy="#{est.nome}">
+                        <p:outputLabel value="#{est.nome}"/>
+                    </p:column>
+                    <p:column headerText="Sigla"
+                              filterBy="#{est.uf}" filterMatchMode="contains"
+                              sortBy="#{est.uf}">
+                        <p:outputLabel value="#{est.uf}"/>
+                    </p:column>
+
+                    <p:column headerText="OP" width="100">
+                        <p:commandButton ajax="false" 
+                                         action="#{estadoControle.remover(est)}"
+                                         icon="ui-icon-trash"
+                                         immediate="true"/>
+                        <p:commandButton ajax="false" 
+                                         actionListener="#{estadoControle.editar(est)}"
+                                         action="estadoedita"
+                                         icon="ui-icon-pencil"
+                                         immediate="true"/>
+                    </p:column>                               
+                </p:dataTable>
+                <br/>
+                <p:commandButton value="Novo Estado" action="estadoedita"/>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body"> 
+
+            <h1 align="center">Lista de Pessoas</h1>
+            <h:form style="margin: 15px">           
+                <p:dataTable value="#{pessoaControle.listaPessoas}" var="cli" style="text-align-last: center"
+                             emptyMessage="Nenhuma Pessoa Cadastrada!"
+                             paginator="true" rows="5" 
+                             rowsPerPageTemplate="2,5,10,{ShowAll|'All'}">
+                    <p:column headerText="Nome"
+                              filterBy="#{cli.nome}" filterMatchMode="contains"
+                              sortBy="#{cli.nome}">
+                        <p:outputLabel value="#{cli.nome}"/>
+                    </p:column>
+                    <p:column headerText="CPF/CNPJ"
+                              filterBy="#{cli.cpfCnpj}" filterMatchMode="contains"
+                              sortBy="#{cli.cpfCnpj}">
+                        <p:outputLabel value="#{cli.cpfCnpj}"/>
+                    </p:column>
+                    <p:column headerText="Endereço"
+                              filterBy="#{cli.endedreco}" filterMatchMode="contains"
+                              sortBy="#{cli.endedreco}">
+                        <p:outputLabel value="#{cli.endedreco}"/>
+                    </p:column>
+                    <p:column headerText="Número"
+                              filterBy="#{cli.numero}" filterMatchMode="contains"
+                              sortBy="#{cli.numero}">
+                        <p:outputLabel value="#{cli.numero}"/>
+                    </p:column>
+                    
+                    <p:column headerText="OP" width="100">
+                        <p:commandButton ajax="false" 
+                                         action="#{pessoaControle.remover(cli)}"
+                                         icon="ui-icon-trash"
+                                         immediate="true"/>
+                        <p:commandButton ajax="false" 
+                                         actionListener="#{pessoaControle.editar(cli)}"
+                                         action="pessoaedita"
+                                         icon="ui-icon-pencil"
+                                         immediate="true"/>
+                    </p:column>
+                    
+                </p:dataTable>
+                <br/>
+                <p:commandButton value="Adicionar Pessoa" action="pessoaedita"/>
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+</html>
