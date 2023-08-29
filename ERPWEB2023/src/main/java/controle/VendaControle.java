@@ -70,7 +70,7 @@ public class VendaControle implements Serializable {
     }
 
     public List<Pessoa> getListaFiltrandoPessoa(String filtro) {
-        return pessoaFacade.listaFiltrando(filtro, "nome", "cpfcnpj");
+        return pessoaFacade.listaFiltrando(filtro, "nome", "cpfCnpj");
     }
 
     public void setPessoaConverter(ConverterGenerico pessoaConverter) {

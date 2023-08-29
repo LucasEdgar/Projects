@@ -3,6 +3,9 @@ entidades\Venda.class
 controle\ProdutoControle.class
 facade\PessoaFacade.class
 controle\PessoaControle.class
+controle\FornecedorControle.class
+entidades\Fornecedor.class
+entidades\Compra.class
 controle\EstadoControle.class
 entidades\Cidade.class
 facade\AbstractFacade.class
@@ -14,11 +17,15 @@ facade\VendaFacade.class
 controle\CidadeControle$1.class
 facade\ProdutoGrupoFacade.class
 entidades\Estado.class
+entidades\ItensCompra.class
 entidades\ProdutoGrupo.class
 controle\VendaControle.class
 facade\ProdutoFacade.class
 controle\CidadeControle.class
 entidades\ClassePai.class
+facade\CompraFacade.class
 entidades\Produto.class
 entidades\Pessoa.class
+facade\FornecedorFacade.class
 converter\EstadoConverter.class
+controle\CompraControle.class
